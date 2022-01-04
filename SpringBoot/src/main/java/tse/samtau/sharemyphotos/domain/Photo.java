@@ -1,8 +1,5 @@
 package tse.samtau.sharemyphotos.domain;
 
-import java.util.Arrays;
-import java.util.Collection;
-
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -22,7 +19,7 @@ public class Photo {
 	private String name;
 	
 	@Field(value = "description")
-	private Collection<String> description;
+	private String description;
 	
 	public Photo() {
 		//TODO
@@ -31,7 +28,7 @@ public class Photo {
 	public Photo(String url, String name, String desc) {
 		this.url = url;
 		this.name = name;
-		this.description = Arrays.asList(desc);
+		this.description = desc;
 	}
 
 	@Override

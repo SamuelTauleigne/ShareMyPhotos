@@ -1,16 +1,23 @@
 package tse.samtau.sharemyphotos.controller;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import tse.samtau.sharemyphotos.dao.PhotoRepository;
 import tse.samtau.sharemyphotos.domain.Photo;
 
-@Controller
+@RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class PhotoController {
 
 	private static final String doctype = "<!DOCTYPE html>";
@@ -84,5 +91,18 @@ public class PhotoController {
         
         return doctype + "All Deleted !";
     }
+    
+    
+    
+    @GetMapping("/photos")
+    public List<Photo> getPhotos() {
+        return (List<Photo>) photoRepository.findAll();
+    }
+
+    @PostMapping("/photos")
+    void addUser(@RequestBody Photo photo) {
+    	photoRepository.save(photo);
+    }
+    
 	
 }
