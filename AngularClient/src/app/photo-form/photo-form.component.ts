@@ -15,15 +15,15 @@ export class PhotoFormComponent {
   constructor(
     private route: ActivatedRoute, 
       private router: Router, 
-        private userService: PhotoService) {
+        private photoService: PhotoService) {
     this.photo = new Photo();
   }
 
   onSubmit() {
-    this.userService.save(this.photo).subscribe(result => this.gotoUserList());
+    this.photoService.save(this.photo).subscribe(result => this.gotoPhotosList());
   }
 
-  gotoUserList() {
+  gotoPhotosList() {
     this.router.navigate(['/photos']);
   }
 }

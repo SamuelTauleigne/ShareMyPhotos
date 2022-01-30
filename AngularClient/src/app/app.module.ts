@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { PhotoListComponent } from './photos-list/photos-list.component';
 import { PhotoFormComponent } from './photo-form/photo-form.component';
 import { PhotoService } from './service/photo.service';
+import { PhotosDisplayComponent } from './photos-display/photos-display.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PhotoListComponent,
-    PhotoFormComponent
+    PhotoFormComponent,
+    PhotosDisplayComponent
   ],
   imports: [
     BrowserModule,

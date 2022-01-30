@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,12 +62,12 @@ public class PhotoController {
         String html = doctype;
         for (Photo photo : photos) {
             html += photo + "<br>";
-            // html += "<img src=" + photo.getUrl() + ">";
+            html += "<img src=" + photo.getUrl() + ">";
         }
 
         return html;
     }
-
+    
     @ResponseBody
     @RequestMapping("/showNameLike")
     public String showFullNameLike() {
