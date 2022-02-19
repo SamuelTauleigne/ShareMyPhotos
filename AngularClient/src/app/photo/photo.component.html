@@ -1,0 +1,27 @@
+<div class="card edition-container" *ngIf="photo">
+
+    <h2>{{photo.name}} Details</h2>
+  
+    <div class="form-group">
+      <label for="photo-url">Photo URL: </label>
+      <input id="photo-url" [(ngModel)]="photo.url" placeholder="url" disabled>
+    </div>
+  
+    <div class="form-group">
+      <label for="photo-name">Photo Name : </label>
+      <input id="photo-name" [(ngModel)]="photo.name" placeholder="name">
+    </div>
+  
+    <div class="form-group">
+      <label for="photo-description">Photo Description : </label>
+      <input id="photo-description" [(ngModel)]="photo.description" placeholder="description">
+    </div>
+  
+    <div class="buttons">
+      <button class="btn btn-primary" (click)="modify()">MODIFY</button>
+      <button class="btn btn-danger" (click)="delete()">DELETE</button>
+      <button class="btn btn-primary btn-outline" (click)="goBack()">BACK</button>
+    </div>
+  
+  </div>
+  

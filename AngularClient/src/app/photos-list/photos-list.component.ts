@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Photo } from '../model/photo';
+import { Photo } from '../photo';
 import { PhotoService } from '../service/photo.service';
 
 @Component({
@@ -20,4 +20,5 @@ export class PhotoListComponent implements OnInit {
       this.photos = data;
     });
   }
+
 }

@@ -1,0 +1,53 @@
+<div class="card profiles-container">
+    <h2>All Photos</h2>
+
+    <ul class="photos">
+        <li *ngFor="let photo of photos">
+            <a routerLink="/photos/{{photo.id}}">
+                <span class="name">{{ photo.name }}</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="card creation-container">
+    <h2>Photo Creation</h2>
+  
+    <!--
+    <div class="form-group">
+        <label for="photo-url">Photo URL : </label>
+        <input id="photo-url" [(ngModel)]="photo.url" placeholder="url">
+    </div>
+    -->
+  
+    <div class="form-group">
+        <label for="photo-name">Photo Name: </label>
+        <input id="photo-name" [(ngModel)]="photo.name" placeholder="name">
+    </div>
+  
+    <div class="form-group">
+        <label for="photo-description">Photo Description : </label>
+        <input id="photo-description" [(ngModel)]="photo.description" placeholder="description">
+    </div>
+  
+    <form [formGroup]="formData" (ngSubmit)="onSubmit(); createPhoto();">
+      <input type="file"
+             id="file[0]"
+             name="firstfile"
+             accept="image/*"
+             (change)="handleFileInput1($event)">
+        <!--
+      <input type="file"
+             id="file[1]"
+             (change)="handleFileInput2($event)">
+        -->
+      <div>
+        <button type="submit">Add Photo</button>
+      </div>
+    </form>
+  
+    <!--
+      ; createPhoto();
+    <button class="btn btn-primary" (click)="createPhoto()">CREATE PHOTO</button>
+    -->
+  </div>

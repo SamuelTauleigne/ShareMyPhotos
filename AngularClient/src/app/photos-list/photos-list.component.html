@@ -6,13 +6,21 @@
           <th scope="col">#</th>
           <th scope="col">Name</th>
           <th scope="col">Description</th>
+          <th scope="col">Image Display</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let photo of photos">
+        <tr *ngFor="let photo of photos">  
           <td> 0 </td>
-          <td>{{ photo.name }}</td>
+          <td>
+            <a routerLink="/photos/{{photo.name}}">
+            {{ photo.name }}
+            </a>
+          </td>
           <td>{{ photo.description }}</td>
+          <td>
+            <img class="images" src={{photo.url}}/>
+          </td>
         </tr>
       </tbody>
     </table>
