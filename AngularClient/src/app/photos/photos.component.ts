@@ -16,8 +16,7 @@ export class PhotosComponent implements OnInit {
   photos: Photo[] = [];
   photo: Photo = this.photoService.reset();
   formData!: FormGroup;
-  fileToUpload1!: File;
-  // fileToUpload2!: File;
+  filesToUpload!: File[];
 
   constructor(
     private photoService: PhotoService,
@@ -58,21 +57,19 @@ export class PhotosComponent implements OnInit {
       );
   }
 
-  handleFileInput1($event: any) {
-    this.fileToUpload1 = <File>$event.target.files[0];
-    this.photo.url = "http://localhost/sharemyphotos-storage/" + this.fileToUpload1.name;
+  handleFilesInput($event: any) {
+    this.filesToUpload = <File[]>$event.target.files;
   }
- 
-  /*
-  handleFileInput2($event: any) {
-    this.fileToUpload2 = <File>$event.target.files[0];
-  }
-  */
- 
-  onSubmit(): void {
+
+  onSubmitMultiple(): void {
     const formData: FormData = new FormData();
-    formData.append('document', this.fileToUpload1, this.fileToUpload1.name);
-    // formData.append('document', this.fileToUpload2, this.fileToUpload2.name);
+
+    for (var file of this.filesToUpload) {
+      formData.append('document', file, file.name);
+      // TODO : Modify Name to signal the differences ?
+      this.photo.url = "http://localhost/sharemyphotos-storage/" + file.name;
+      this.createPhoto();
+    }
  
     let url = 'http://localhost:8080/photos/upload';
  
@@ -85,10 +82,6 @@ export class PhotosComponent implements OnInit {
       }
     );
     
-  }
-  
-  gotoPhotosList() {
-    this.router.navigate(['/photos']);
   }
 
 }

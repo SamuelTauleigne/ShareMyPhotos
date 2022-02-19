@@ -30,12 +30,13 @@
         <input id="photo-description" [(ngModel)]="photo.description" placeholder="description">
     </div>
   
-    <form [formGroup]="formData" (ngSubmit)="onSubmit(); createPhoto();">
+    <form [formGroup]="formData" (ngSubmit)="onSubmitMultiple();">
       <input type="file"
-             id="file[0]"
+             id="files"
              name="firstfile"
              accept="image/*"
-             (change)="handleFileInput1($event)">
+             (change)="handleFilesInput($event)"
+             multiple>
         <!--
       <input type="file"
              id="file[1]"
