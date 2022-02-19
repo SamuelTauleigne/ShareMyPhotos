@@ -13,7 +13,7 @@ import { Location } from '@angular/common';
 })
 export class PhotoComponent implements OnInit {
 
-  @Input() photo?: Photo;
+  @Input() photo!: Photo;
 
   constructor(
     private route: ActivatedRoute,
@@ -69,9 +69,9 @@ export class PhotoComponent implements OnInit {
   delete(): void {
     this.deleteWithObservable()
       .subscribe(
-        profile => {
+        photo => {
           this.photoService.findAll();
-          profile = this.photoService.reset();
+          photo = this.photoService.reset();
           this.router.navigate(['/photos']);
         }
       );

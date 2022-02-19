@@ -121,16 +121,22 @@ public class PhotoController {
 	
 	@DeleteMapping("/photos/{id}")
     public void deletePhotoById(@PathVariable String id){
-        this.photoRepository.deletePhotoById(id);
-        /*
-        Path path = Paths.get(url);
-        try {
-			Files.delete(path);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		Optional<Photo> photo = this.photoRepository.findById(id);
+        
+		if (photo.isPresent()) {
+			Photo _photo = photo.get();
+			String _photoUrl = _photo.getUrl();
+			Path path = Paths.get("C:\\wamp\\www\\sharemyphotos-storage\\"
+					+ _photoUrl.substring(_photoUrl.lastIndexOf('/') + 1));
+			try {
+				Files.delete(path);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		*/
+        this.photoRepository.deletePhotoById(id);
+		
     }
 
 
