@@ -35,15 +35,11 @@ public class ShareMyPhotosApplication {
 
     }
 	
-	@Bean
-    CommandLineRunner init(PhotoRepository photoRepository) {
-        return args -> {
-            Stream.of("URL1", "URL2", "URL3", "URL4", "URL5").forEach(url -> {
-                Photo photo = new Photo(url, "Name", "Description");
-                photoRepository.save(photo);
-            });
-            photoRepository.findAll().forEach(System.out::println);
-        };
-    }
+	/*
+	 * @Bean CommandLineRunner init(PhotoRepository photoRepository) { return args
+	 * -> { Stream.of("URL1", "URL2", "URL3", "URL4", "URL5").forEach(url -> { Photo
+	 * photo = new Photo(url, "Name", "Description"); photoRepository.save(photo);
+	 * }); photoRepository.findAll().forEach(System.out::println); }; }
+	 */
 	
 }
