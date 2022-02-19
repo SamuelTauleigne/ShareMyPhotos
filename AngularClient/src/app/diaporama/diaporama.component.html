@@ -1,0 +1,8 @@
+<div class="buttons">
+    <button class="btn btn-primary" (click)="previous()">PREVIOUS</button>
+    <button class="btn btn-primary" (click)="next()">NEXT</button>
+</div>
+
+<div class="card edition-container" *ngIf="photo">
+    <img class="images" src={{photo.url}}/>
+</div>

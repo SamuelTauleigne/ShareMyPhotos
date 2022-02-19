@@ -25,7 +25,6 @@ export class PhotoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPhoto();
-    console.log(this.photo);
   }
   
   getPhoto(): void {

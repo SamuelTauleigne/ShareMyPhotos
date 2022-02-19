@@ -5,10 +5,12 @@ import { PhotosDisplayComponent } from './photos-display/photos-display.componen
 import { FileUploadComponentComponent} from "./file-upload-component/file-upload-component.component";
 import { PhotoComponent } from './photo/photo.component';
 import { PhotosComponent } from './photos/photos.component';
+import { DiaporamaComponent } from './diaporama/diaporama.component';
 
 const routes: Routes = [
   { path: 'upload', component: FileUploadComponentComponent },
   { path: 'photos', component: PhotosComponent },
+  { path: 'diaporama', component: DiaporamaComponent},
   { path: 'showphotos', component: PhotosDisplayComponent },
   { path: 'photos/:id', component: PhotoComponent }
 ];

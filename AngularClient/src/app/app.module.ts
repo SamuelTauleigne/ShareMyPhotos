@@ -10,6 +10,7 @@ import { PhotosDisplayComponent } from './photos-display/photos-display.componen
 import { FileUploadComponentComponent } from './file-upload-component/file-upload-component.component';
 import { PhotoComponent } from './photo/photo.component';
 import { PhotosComponent } from './photos/photos.component';
+import { DiaporamaComponent } from './diaporama/diaporama.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PhotosComponent } from './photos/photos.component';
     PhotoListComponent,
     PhotosDisplayComponent,
     PhotoComponent,
-    PhotosComponent
+    PhotosComponent,
+    DiaporamaComponent
   ],
   imports: [
     BrowserModule,
