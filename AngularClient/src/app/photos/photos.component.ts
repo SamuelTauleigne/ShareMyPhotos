@@ -15,6 +15,7 @@ export class PhotosComponent implements OnInit {
   
   photos: Photo[] = [];
   photo: Photo = this.photoService.reset();
+  filter: string="";
   formData!: FormGroup;
   filesToUpload!: File[];
 
@@ -33,8 +34,33 @@ export class PhotosComponent implements OnInit {
   }
   
   getPhotos(): void {
+    /*
     this.photoService.findAll()
       .subscribe(photos => this.photos = photos);
+      */
+
+    let _photos: Photo[] = [];
+    this.photoService.findAll()
+      .subscribe(
+        photos => {
+          this.photos = photos;
+          for (var photo of this.photos) {
+            if (photo.description.toLowerCase().includes(this.filter.toLowerCase()) || photo.name.toLowerCase().includes(this.filter.toLowerCase())) {
+              _photos.push(photo);
+            }
+          }
+          this.photos = _photos;
+          console.log(_photos);
+        }
+      );
+      /*
+    for (var photo of _photos) {
+      //if (photo.description.indexOf(this.filter) !== -1) {
+        _photos.push(photo);
+      //}
+    }*/
+    // this.photos = _photos;
+
   }
 
   createPhotoWithObservable(): Observable<Photo> {

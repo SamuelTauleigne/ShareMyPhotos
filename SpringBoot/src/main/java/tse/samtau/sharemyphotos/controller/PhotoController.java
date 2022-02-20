@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +35,8 @@ public class PhotoController {
 	private static final String doctype = "<!DOCTYPE html>";
 	
 	private static final String OUT_PATH = "C:\\wamp\\www\\sharemyphotos-storage\\";
+	
+	private Integer counter = 0;
 
     @Autowired
     private PhotoRepository photoRepository;
@@ -138,6 +141,32 @@ public class PhotoController {
         this.photoRepository.deletePhotoById(id);
 		
     }
+	
+	/* Synchro */
+	
+	@GetMapping("/diaporama")
+	public Photo displayPhoto() {
+		List<Photo> photos = this.photoRepository.findAll();
+		return photos.get(counter);
+	}
+	
+	@PostMapping("/diaporama/next")
+	public Photo displayNextPhoto() {
+		List<Photo> photos = this.photoRepository.findAll();
+		if (this.counter >= 0 && this.counter < photos.size()-1) {
+			counter++;
+		}
+		return photos.get(counter);
+	}
+	
+	@PostMapping("/diaporama/previous")
+	public Photo displayPreviousPhoto() {
+		List<Photo> photos = this.photoRepository.findAll();
+		if (this.counter > 0 && this.counter < photos.size()) {
+			counter--;
+		}
+		return photos.get(counter);
+	}
 
 
     @PostMapping("/photos/upload")
