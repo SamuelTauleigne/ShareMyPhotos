@@ -34,7 +34,7 @@ public class PhotoController {
 
 	private static final String doctype = "<!DOCTYPE html>";
 	
-	private static final String OUT_PATH = "C:\\wamp\\www\\sharemyphotos-storage\\";
+	private String OUT_PATH = "C:\\wamp\\www\\sharemyphotos-storage\\";
 	
 	private Integer counter = 0;
 
@@ -87,7 +87,7 @@ public class PhotoController {
     	
     	Collection<Photo> photos = this.photoRepository.findAll();
         for (Photo photo: photos) {
-        	Path path = Paths.get("C:\\wamp\\www\\sharemyphotos-storage\\"
+        	Path path = Paths.get(this.OUT_PATH
 					+ photo.getUrl().substring(photo.getUrl().lastIndexOf('/') + 1));
         	try {
         		Files.delete(path);
@@ -102,6 +102,7 @@ public class PhotoController {
     
     @GetMapping("/photos")
     public List<Photo> getPhotos() {
+    	this.counter = 0;
         return (List<Photo>) photoRepository.findAll();
     }
     
@@ -137,7 +138,7 @@ public class PhotoController {
 		if (photo.isPresent()) {
 			Photo _photo = photo.get();
 			String _photoUrl = _photo.getUrl();
-			Path path = Paths.get("C:\\wamp\\www\\sharemyphotos-storage\\"
+			Path path = Paths.get(this.OUT_PATH
 					+ _photoUrl.substring(_photoUrl.lastIndexOf('/') + 1));
 			try {
 				Files.delete(path);
@@ -180,21 +181,14 @@ public class PhotoController {
     @PostMapping("/photos/upload")
     public ResponseEntity<Void> uploadPolicyDocument(@RequestParam("document") List<MultipartFile> multipartFile)
     {
-        
-        Photo photo = new Photo();
  
         try {
- 
  
             for(MultipartFile mf: multipartFile)
             {
                 byte[] bytes = mf.getBytes();
                 Path path = Paths.get(this.OUT_PATH + mf.getOriginalFilename());
                 Files.write(path, bytes);
-                
-                // photo.setUrl("http://localhost/sharemyphotos-storage/" + mf.getOriginalFilename());
-                // photoRepository.save(photo);
-                // photoRepository.insert(photo);
             }
  
         } catch (IOException e) {

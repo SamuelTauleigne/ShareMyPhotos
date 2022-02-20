@@ -36,8 +36,7 @@
 
   <form [formGroup]="formData" (ngSubmit)="onSubmitMultiple();">
     <input type="file" id="files" name="firstfile" accept="image/*" (change)="handleFilesInput($event)" multiple>
+    <button class="btn btn-primary btn-import" type="submit">IMPORTER</button>
   </form>
-
-  <button class="btn btn-primary btn-import" type="submit">IMPORTER</button>
 
 </div>

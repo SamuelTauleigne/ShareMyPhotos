@@ -5,6 +5,7 @@ import { PhotosComponent } from './photos/photos.component';
 import { DiaporamaComponent } from './diaporama/diaporama.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'photos', pathMatch: 'full' },
   { path: 'photos', component: PhotosComponent },
   { path: 'diaporama', component: DiaporamaComponent},
   { path: 'photos/:id', component: PhotoComponent }
