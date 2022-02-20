@@ -1,0 +1,17 @@
+h3, p {
+    text-align: center;
+}
+
+.btn-previous {
+    float: left;
+    width: 50%;
+}
+
+.btn-next {
+    float: right;
+    width: 50%;
+}
+
+button {
+    font-weight: bold;
+}

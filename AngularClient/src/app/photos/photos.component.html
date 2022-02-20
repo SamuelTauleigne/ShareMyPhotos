@@ -1,34 +1,43 @@
-<div class="card profiles-container">
-  <h2>All Photos</h2>
-  <input id="photo-filter" [(ngModel)]="filter" placeholder="filter">
+<div class="card">
+
+  <h2 class="title">Album</h2>
+  
+  <input id="photo-filter" [(ngModel)]="filter" placeholder="filtre" (change)="getPhotos();">
   <button (click)="getPhotos();">Filtrer</button>
+  
   <ul class="photos">
-    <li *ngFor="let photo of photos">
+    <li class="card" *ngFor="let photo of photos">
       <a routerLink="/photos/{{photo.id}}">
-        <span class="photo">{{ photo.name }} <img class="images" src={{photo.url}}></span>
+        <span class="list-inline">
+          <img class="image list-inline-item" src={{photo.url}}>
+          <div class="image-name list-inline-item">{{ photo.name }}</div>
+          <div class="image-description">{{ photo.description }}</div>
+        </span>
       </a>
     </li>
   </ul>
+
+  <button class="btn btn-danger" (click)="deleteAll();">SUPPRIMER TOUT</button>
+
 </div>
 
-<div class="card creation-container">
-  <h2>Photo Creation</h2>
+<div id="import" class="card creation-container">
+  <h2>Importer des photos</h2>
 
   <div class="form-group">
-    <label for="photo-name">Nom : </label>
-    <input id="photo-name" [(ngModel)]="photo.name" placeholder="name">
+    <label for="photo-name">Nom</label>
+    <input id="photo-name" [(ngModel)]="photo.name" placeholder="nom">
   </div>
 
   <div class="form-group">
-    <label for="photo-description">Description : </label>
-    <input id="photo-description" [(ngModel)]="photo.description" placeholder="description">
+    <label for="photo-description">Description</label>
+    <textarea id="photo-description" [(ngModel)]="photo.description" placeholder="description"></textarea>
   </div>
 
   <form [formGroup]="formData" (ngSubmit)="onSubmitMultiple();">
     <input type="file" id="files" name="firstfile" accept="image/*" (change)="handleFilesInput($event)" multiple>
-
-    <div>
-      <button type="submit">Importer</button>
-    </div>
   </form>
+
+  <button class="btn btn-primary btn-import" type="submit">IMPORTER</button>
+
 </div>

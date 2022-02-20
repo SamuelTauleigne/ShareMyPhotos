@@ -82,13 +82,21 @@ public class PhotoController {
         return html;
     }
 
-    @ResponseBody
-    @RequestMapping("/deleteAllPhoto")
-    public String deleteAllPhoto() {
-
+    @DeleteMapping("/photos")
+    public void deleteAllPhotos() {
+    	
+    	Collection<Photo> photos = this.photoRepository.findAll();
+        for (Photo photo: photos) {
+        	Path path = Paths.get("C:\\wamp\\www\\sharemyphotos-storage\\"
+					+ photo.getUrl().substring(photo.getUrl().lastIndexOf('/') + 1));
+        	try {
+        		Files.delete(path);
+        	} catch (IOException e) {
+        		// TODO Auto-generated catch block
+        		e.printStackTrace();
+        	}
+        }
         this.photoRepository.deleteAll();
-        
-        return doctype + "All Deleted !";
     }
     
     
@@ -104,7 +112,7 @@ public class PhotoController {
 
 	
 	@PostMapping("/photos")
-	void addPhoto(@RequestBody Photo photo) {
+	public void addPhoto(@RequestBody Photo photo) {
 		photoRepository.save(photo);
 	}
 	
@@ -142,7 +150,7 @@ public class PhotoController {
 		
     }
 	
-	/* Synchro */
+	/* Synchronization */
 	
 	@GetMapping("/diaporama")
 	public Photo displayPhoto() {
@@ -181,7 +189,7 @@ public class PhotoController {
             for(MultipartFile mf: multipartFile)
             {
                 byte[] bytes = mf.getBytes();
-                Path path = Paths.get(OUT_PATH + mf.getOriginalFilename());
+                Path path = Paths.get(this.OUT_PATH + mf.getOriginalFilename());
                 Files.write(path, bytes);
                 
                 // photo.setUrl("http://localhost/sharemyphotos-storage/" + mf.getOriginalFilename());

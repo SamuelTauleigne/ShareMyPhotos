@@ -1,27 +1,31 @@
 <div class="card edition-container" *ngIf="photo">
 
-    <h2>{{photo.name}} Details</h2>
-  
+  <div class="card">
+    <h2 class="title">{{photo.name}}</h2>
+    <img class="images" src={{photo.url}}>
+  </div>
+  <div class="card">
+    <h3 class="title">Editer la photo</h3>
     <div class="form-group">
-      <label for="photo-url">Photo URL: </label>
+      <label for="photo-url">URL</label>
       <input id="photo-url" [(ngModel)]="photo.url" placeholder="url" disabled>
     </div>
   
     <div class="form-group">
-      <label for="photo-name">Photo Name : </label>
+      <label for="photo-name">Nom</label>
       <input id="photo-name" [(ngModel)]="photo.name" placeholder="name">
     </div>
   
     <div class="form-group">
-      <label for="photo-description">Photo Description : </label>
-      <input id="photo-description" [(ngModel)]="photo.description" placeholder="description">
+      <label for="photo-description">Description</label>
+      <textarea id="photo-description" [(ngModel)]="photo.description" placeholder="description"></textarea>
     </div>
   
     <div class="buttons">
-      <button class="btn btn-primary" (click)="modify()">MODIFY</button>
-      <button class="btn btn-danger" (click)="delete()">DELETE</button>
-      <button class="btn btn-primary btn-outline" (click)="goBack()">BACK</button>
+      <button class="btn btn-primary" (click)="modify()">MODIFIER</button>
+      <button class="btn btn-danger" (click)="delete()">SUPPRIMER</button>
+      <button class="btn btn-primary btn-back" (click)="goBack()">RETOUR</button>
     </div>
-  
   </div>
+</div>
   

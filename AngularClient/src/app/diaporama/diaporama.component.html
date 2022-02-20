@@ -1,12 +1,13 @@
-<div id="messages"></div>
-<input type="text" id="message">
-<input type="button" value="send" (click)="send()">
+<h2 class="title">Diaporama</h2>
+<p>Ce diaporama est synchronisé !</p>
 
 <div class="buttons">
-    <button class="btn btn-primary" (click)="previous()">PREVIOUS</button>
-    <button class="btn btn-primary" (click)="next()">NEXT</button>
+    <button class="btn btn-primary btn-previous" (click)="previous()"><<<</button>
+    <button class="btn btn-primary btn-next" (click)="next()">>>></button>
 </div>
 
 <div class="card edition-container" *ngIf="photo">
     <img class="images" src={{photo.url}}/>
+    <h3>{{photo.name}}</h3>
+    <p>{{photo.description}}</p>
 </div>

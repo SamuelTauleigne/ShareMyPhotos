@@ -22,8 +22,7 @@ export class PhotosComponent implements OnInit {
   constructor(
     private photoService: PhotoService,
     private httpClient: HttpClient,
-    private formBuilder: FormBuilder,
-    private router: Router
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -34,10 +33,6 @@ export class PhotosComponent implements OnInit {
   }
   
   getPhotos(): void {
-    /*
-    this.photoService.findAll()
-      .subscribe(photos => this.photos = photos);
-      */
 
     let _photos: Photo[] = [];
     this.photoService.findAll()
@@ -53,13 +48,6 @@ export class PhotosComponent implements OnInit {
           console.log(_photos);
         }
       );
-      /*
-    for (var photo of _photos) {
-      //if (photo.description.indexOf(this.filter) !== -1) {
-        _photos.push(photo);
-      //}
-    }*/
-    // this.photos = _photos;
 
   }
 
@@ -92,22 +80,28 @@ export class PhotosComponent implements OnInit {
 
     for (var file of this.filesToUpload) {
       formData.append('document', file, file.name);
-      // TODO : Modify Name to signal the differences ?
       this.photo.url = "http://localhost/sharemyphotos-storage/" + file.name;
       this.createPhoto();
     }
  
     let url = 'http://localhost:8080/photos/upload';
  
-    this.httpClient.post(url, formData, {observe: 'response'}).subscribe(
-      resp => {
-        console.log(resp.body);
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    this.httpClient.post(url, formData).subscribe();
     
+  }
+
+  deleteAllWithObservable(): Observable<Photo> {
+    return this.httpClient.delete<Photo>("http://localhost:8080/photos");
+  }
+
+  deleteAll(): void {
+    this.deleteAllWithObservable()
+      .subscribe(
+        photo => {
+          this.getPhotos();
+          photo = this.photoService.reset();
+        }
+      );
   }
 
 }

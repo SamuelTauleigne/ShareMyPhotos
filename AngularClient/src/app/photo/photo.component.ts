@@ -29,14 +29,12 @@ export class PhotoComponent implements OnInit {
   
   getPhoto(): void {
     const id = String(this.route.snapshot.paramMap.get('id'));
-    console.log(id);
     this.getPhotoById(id)
       .subscribe(photo => this.photo = photo);
   }
 
   getPhotoById(id: String): Observable<Photo> {
     const url = `http://localhost:8080/photos/${id}`;
-    console.log(url);
     return this.http.get<Photo>(url);
   }
 
@@ -53,7 +51,7 @@ export class PhotoComponent implements OnInit {
   modify(): void {
     this.modifyWithObservable()
       .subscribe(
-        profile => {
+        photo => {
           this.photoService.findAll();
           this.router.navigate(['/photos']);
         }
